@@ -72,7 +72,7 @@ main() {
     fi
 
     echo "Installing required libraries..."
-    brew install xxhash lz4 zstd cpr cryptopp openssl curl
+    brew install xxhash lz4 zstd cpr cryptopp openssl curl boost
 
     HOMEBREW_PREFIX=$(brew --prefix)
 
