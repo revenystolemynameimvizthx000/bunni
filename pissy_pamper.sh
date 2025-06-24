@@ -54,9 +54,10 @@ main() {
     curl -L "https://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/libbunnimac.dylib" -o "./libbunnimac.dylib"
 
     echo "Installing dylib into Bunni.app..."
-    LIB_TARGET="/Applications/Bunni.app/Contents/MacOS/libbunnimac.dylib"
+    LIB_TARGET="/Applications/Roblox.app/Contents/MacOS/libbunnimac.dylib"
     cp "./libbunnimac.dylib" "$LIB_TARGET"
     chmod +x "$LIB_TARGET"
+
 
     echo "Cleaning up..."
     hdiutil detach "$MOUNT_POINT" -quiet
