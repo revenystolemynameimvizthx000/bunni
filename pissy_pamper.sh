@@ -7,7 +7,7 @@ main() {
     json=$(curl -s "https://clientsettingscdn.roblox.com/v2/client-version/MacPlayer")
     local version=$(echo "$json" | grep -o '"clientVersionUpload":"[^"]*' | grep -o '[^"]*$')
 
-    if [ "$version" != "version-6cd64f0a23fc4462" ]; then
+    if [ "$version" != "version-db859ae17f144eea" ]; then
         echo "Bunni Mac is not updated for the latest Version. Stopping Installation"
         exit 1
     fi
