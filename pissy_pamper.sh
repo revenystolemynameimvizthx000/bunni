@@ -4,12 +4,19 @@ main() {
     echo "--- BUNNI MAC INSTALLER ---"
 
     echo "Getting latest Mac Version"
+    # Teste den JSON-Parsing Teil einzeln
     json=$(curl -s "https://clientsettingscdn.roblox.com/v2/client-version/MacPlayer")
-    local version=$(echo "$json" | grep -o '"clientVersionUpload":"[^"]*' | grep -o '[^"]*$')
-
-    if [ "$version" != "version-db859ae17f144eea" ]; then
-        echo "Bunni Mac is not updated for the latest Version. Stopping Installation"
-        exit 1
+    echo "Raw JSON: $json"
+    
+    # Teste den grep Befehl
+    version=$(echo "$json" | grep -o '"clientVersionUpload":"[^"]*' | grep -o '[^"]*$')
+    echo "Extracted version: '$version'"
+    
+    # Vergleiche
+    if [ "$version" = "version-db859ae17f144eea" ]; then
+        echo "Version matches!"
+    else
+        echo "Version does not match. Expected: version-db859ae17f144eea, Got: '$version'"
     fi
 
     if pgrep -x "RobloxPlayer" > /dev/null; then
