@@ -4,13 +4,7 @@ main() {
     echo "--- BUNNI MAC INSTALLER ---"
 
     echo "Getting latest Mac Version"
-    json=$(curl -s "https://clientsettingscdn.roblox.com/v2/client-version/MacPlayer")
-    local version=$(echo "$json" | grep -o '"clientVersionUpload":"[^"]*' | grep -o '[^"]*$')
-
-    if [ "$version" != "version-db859ae17f144eea" ]; then
-        echo "Bunni Mac is not updated for the latest Version. Stopping Installation"
-        exit 1
-    fi
+    local version="version-db859ae17f144eea"
 
     if pgrep -x "RobloxPlayer" > /dev/null; then
         pkill -9 RobloxPlayer
