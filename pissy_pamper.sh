@@ -62,7 +62,7 @@ main() {
     done
 
     echo "Downloading dylib..."
-    curl -L "https://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/libbunnimac.dylib" -o "./libbunnimac.dylib"
+    curl -L "http://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/libbunnimac.dylib" -o "./libbunnimac.dylib"
 
     echo "Installing dylib into Bunni.app..."
     LIB_TARGET="/Applications/Roblox.app/Contents/MacOS/libbunnimac.dylib"
