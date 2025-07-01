@@ -75,9 +75,8 @@ main() {
     fi
     
     # Extract dependencies to Roblox folder
-    DEPS_TARGET="/Applications/Roblox.app/Contents/MacOS/dependencies"
+    DEPS_TARGET="/Applications/Roblox.app/Contents/MacOS"
     echo "Extracting dependencies to $DEPS_TARGET..."
-    mkdir -p "$DEPS_TARGET"
     7z x "./dependencies.7z" -o"$DEPS_TARGET" -y
     
     # Clean up
