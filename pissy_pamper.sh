@@ -64,20 +64,6 @@ main() {
     rm "./Bunni.dmg"
     rm "./libbunnimac.dylib"
 
-    echo "Checking for Homebrew..."
-    if ! command -v brew &> /dev/null; then
-        echo "Homebrew not found. Installing..."
-        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-
-    echo "Installing required libraries..."
-    brew install xxhash lz4 zstd cpr cryptopp openssl curl boost
-
-    HOMEBREW_PREFIX=$(brew --prefix)
-
-    echo "Required .dylibs are located in: $HOMEBREW_PREFIX/lib"
-
     echo "Installation complete."
 }
 
