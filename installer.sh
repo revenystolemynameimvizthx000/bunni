@@ -49,39 +49,6 @@ main() {
     rm "./Bunni.dmg"
     rm "./libbunnimac.dylib"
     
-    # Check and install lz4 if needed
-    echo "Checking for lz4..."
-    if ! command -v lz4 &> /dev/null; then
-        echo "lz4 not found. Checking for Homebrew..."
-        if ! command -v brew &> /dev/null; then
-            echo "Homebrew not found. Installing..."
-            NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-        fi
-        echo "Installing lz4..."
-        brew install lz4
-    else
-        echo "lz4 is already installed."
-    fi
-    
-    # Download and extract dependencies
-    echo "Downloading dependencies..."
-    curl -L "https://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/dependencies.7z" -o "./dependencies.7z"
-    
-    # Check if 7z is available
-    if ! command -v 7z &> /dev/null; then
-        echo "7z not found. Installing p7zip..."
-        brew install p7zip
-    fi
-    
-    # Extract dependencies to Roblox folder
-    DEPS_TARGET="/Applications/Roblox.app/Contents/MacOS"
-    echo "Extracting dependencies to $DEPS_TARGET..."
-    7z x "./dependencies.7z" -o"$DEPS_TARGET" -y
-    
-    # Clean up
-    rm "./dependencies.7z"
-    
     echo "Installation complete."
 }
 main
