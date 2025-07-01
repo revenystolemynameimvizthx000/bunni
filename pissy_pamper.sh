@@ -4,12 +4,16 @@ main() {
     echo "--- BUNNI MAC INSTALLER ---"
 
     echo "Getting latest Mac Version"
-    # Teste den JSON-Parsing Teil einzeln
-    json=$(curl -s "https://clientsettingscdn.roblox.com/v2/client-version/MacPlayer")
-    echo "Raw JSON: $json"
+    echo "Getting latest Mac Version"
+    json=$(curl -s -v "https://clientsettingscdn.roblox.com/v2/client-version/MacPlayer" 2>&1)
+    echo "Curl output: $json"
+    echo "Curl exit code: $?"
     
-    # Teste den grep Befehl
-    version=$(echo "$json" | grep -o '"clientVersionUpload":"[^"]*' | grep -o '[^"]*$')
+    # Nur den JSON-Teil extrahieren (falls curl verbose output dabei ist)
+    clean_json=$(echo "$json" | tail -n 1)
+    echo "Clean JSON: $clean_json"
+    
+    version=$(echo "$clean_json" | grep -o '"clientVersionUpload":"[^"]*' | grep -o '[^"]*$')
     echo "Extracted version: '$version'"
     
     # Vergleiche
