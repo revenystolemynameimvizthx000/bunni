@@ -5,7 +5,7 @@ main() {
 
     echo "Getting latest Mac Version"
     echo "Getting latest Mac Version"
-    json=$(curl -s -v "https://clientsettingscdn.roblox.com/v2/client-version/MacPlayer" 2>&1)
+    json=$(curl -s -v "http://clientsettingscdn.roblox.com/v2/client-version/MacPlayer" 2>&1)
     echo "Curl output: $json"
     echo "Curl exit code: $?"
     
