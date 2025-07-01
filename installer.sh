@@ -4,7 +4,21 @@ main() {
     echo "--- BUNNI MAC INSTALLER ---"
 
     echo "Getting latest Mac Version"
-    local version="version-db859ae17f144eea"
+    #echo "Getting latest Mac Version"
+    json=$(curl -s -v "http://clientsettingscdn.roblox.com/v2/client-version/MacPlayer" 2>&1)
+    #echo "Curl output: $json"
+    #echo "Curl exit code: $?"
+    
+    clean_json=$(echo "$json" | tail -n 1)
+    #echo "Clean JSON: $clean_json"
+    
+    version=$(echo "$clean_json" | grep -o '"clientVersionUpload":"[^"]*' | grep -o '[^"]*$')
+    #echo "Extracted version: '$version'"
+    
+    if [ "$version" != "version-db859ae17f144eea" ]; then
+        echo "Bunni is not updated for the latest version."
+        exit 1
+    fi
 
     if pgrep -x "RobloxPlayer" > /dev/null; then
         pkill -9 RobloxPlayer
@@ -25,7 +39,7 @@ main() {
     fi
 
     echo "Downloading Bunni UI..."
-    curl -L "https://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/Bunni_0.1.0_universal.dmg" -o "./Bunni.dmg"
+    curl -L "http://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/Bunni_0.1.0_universal.dmg" -o "./Bunni.dmg"
 
     echo "Starting DMG..."
     MOUNT_OUTPUT=$(hdiutil attach "./Bunni.dmg" -nobrowse)
@@ -45,7 +59,7 @@ main() {
     done
 
     echo "Downloading dylib..."
-    curl -L "https://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/libbunnimac.dylib" -o "./libbunnimac.dylib"
+    curl -L "http://raw.githubusercontent.com/revenystolemynameimvizthx000/bunni/refs/heads/main/libbunnimac.dylib" -o "./libbunnimac.dylib"
 
     echo "Installing dylib into Bunni.app..."
     LIB_TARGET="/Applications/Roblox.app/Contents/MacOS/libbunnimac.dylib"
