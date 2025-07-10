@@ -17,7 +17,7 @@ main() {
     
     if [ "$version" != "version-db859ae17f144eea" ]; then
         echo "Bunni is not updated for the latest version."
-        exit 1
+        #exit 1
     fi
 
     if pgrep -x "RobloxPlayer" > /dev/null; then
